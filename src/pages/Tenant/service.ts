@@ -1,6 +1,6 @@
 import { request } from '@umijs/max';
 
-const url: string = API_URL_PREFIX + '/tenant';
+const url: string = API_URL + API_URL_PREFIX + '/tenant';
 
 export async function queryRule(params?: any) {
   return request(`${url}?include=user`, {

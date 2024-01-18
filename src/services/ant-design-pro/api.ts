@@ -2,7 +2,7 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-const url: string = API_URL_PREFIX + '/auth';
+const url: string = API_URL + API_URL_PREFIX + '/auth';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser() {

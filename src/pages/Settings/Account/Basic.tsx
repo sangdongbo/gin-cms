@@ -1,9 +1,9 @@
-import { useModel } from 'umi';
 import { ProCard, ProForm, ProFormText } from '@ant-design/pro-components';
 import { Upload } from '@bluedot-tech/bluedot-antd';
 import { message } from 'antd';
-import style from './index.less';
+import { useModel } from 'umi';
 import { updatePersonalRule } from '../service';
+import style from './index.less';
 
 export default () => {
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -41,7 +41,7 @@ export default () => {
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
                 },
-                action: `${API_URL_PREFIX}/backend/system/resource`,
+                action: `${API_URL + API_URL_PREFIX}/backend/system/resource`,
               }}
               imgCropProps={{
                 shape: 'round',

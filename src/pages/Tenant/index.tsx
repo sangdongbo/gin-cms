@@ -124,7 +124,9 @@ export default () => {
             icon={<ExportOutlined />}
             onClick={() => {
               window.location.href =
-                API_URL_PREFIX + `/tenant/export?token=${localStorage.getItem(ACCESS_TOKEN_NAME)}}`;
+                API_URL +
+                API_URL_PREFIX +
+                `/tenant/export?token=${localStorage.getItem(ACCESS_TOKEN_NAME)}}`;
             }}
           >
             导出
