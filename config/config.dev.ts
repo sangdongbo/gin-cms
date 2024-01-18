@@ -3,8 +3,8 @@ import define from './define';
 
 export default defineConfig({
   mfsu: false,
-  base: '/central/',
-  publicPath: '/central/',
+  base: '/central-admin/',
+  publicPath: '/central-admin/',
   define: {
     ...define,
     API_URL_PREFIX: '/central',

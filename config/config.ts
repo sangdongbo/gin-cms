@@ -1,9 +1,9 @@
 // https://umijs.org/config/
 import { defineConfig } from '@umijs/max';
 import defaultSettings from './defaultSettings';
-import define from './define';
 import proxy from './proxy';
 import routes from './routes';
+import define from './define';
 
 const { REACT_APP_ENV = 'dev' } = process.env;
 
@@ -140,6 +140,6 @@ export default defineConfig({
     API_URL_PREFIX: '/central',
   },
 
-  base: '/central/',
-  publicPath: '/central/',
+  base: '/central-admin/',
+  publicPath: '/central-admin/',
 });
