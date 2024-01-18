@@ -1,6 +1,6 @@
 import { request } from 'umi';
 
-const url: string = API_URL_PREFIX + '/backend/auth/staff';
+const url: string = API_URL + API_URL_PREFIX + '/backend/auth/staff';
 
 export async function queryUserRule(params?: any) {
   return request(`${url}/user`, {

@@ -1,6 +1,6 @@
 import { request } from '@umijs/max';
 
-const url: string = API_URL_PREFIX + '/backend/demo/form';
+const url: string = API_URL + API_URL_PREFIX + '/backend/demo/form';
 
 export async function updateRule(id: number, options?: any) {
   return request(`${url}/${id}`, {

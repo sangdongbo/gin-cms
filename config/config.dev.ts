@@ -8,6 +8,6 @@ export default defineConfig({
   define: {
     ...define,
     API_URL_PREFIX: '/central',
-    API_URL: 'https://api-beta.lookstar.com.cn',
+    API_URL: 'https://beta-api.lookstar.com.cn',
   },
 });
