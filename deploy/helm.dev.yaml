@@ -5,10 +5,9 @@ ingress:
   hosts:
     - host: beta-app.lookstar.com.cn
       paths:
-        - backend:
-            serviceName: lookstar-central-beta
-            servicePort: 80
-          path: /central
+        path: /central
+        pathType: ImplementationSpecific
+
   tls:
     - secretName: lookstar.com.cn
       hosts:
