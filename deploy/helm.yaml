@@ -5,8 +5,8 @@ ingress:
   hosts:
     - host: app.lookstar.com.cn
       paths:
-        -path: /central
-        pathType: ImplementationSpecific
+        - path: /central
+          pathType: ImplementationSpecific
 
   tls:
     - secretName: lookstar.com.cn

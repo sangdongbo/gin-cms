@@ -6,7 +6,7 @@ ingress:
     - host: beta-app.lookstar.com.cn
       paths:
         - path: /central
-        pathType: ImplementationSpecific
+          pathType: ImplementationSpecific
 
   tls:
     - secretName: lookstar.com.cn
