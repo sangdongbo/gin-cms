@@ -5,8 +5,8 @@
   "description": "An out-of-box UI solution for enterprise applications",
   "scripts": {
     "analyze": "cross-env ANALYZE=1 max build",
-    "build:master": "max build",
     "build:develop": "cross-env REACT_APP_ENV=dev UMI_ENV=dev max build",
+    "build:master": "max build",
     "deploy": "npm run build && npm run gh-pages",
     "dev": "npm run start:dev",
     "gh-pages": "gh-pages -d dist",
@@ -56,6 +56,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "omit.js": "^2.0.2",
+    "qs": "^6.11.2",
     "rc-menu": "^9.8.4",
     "rc-util": "^5.30.0",
     "react": "^18.2.0",

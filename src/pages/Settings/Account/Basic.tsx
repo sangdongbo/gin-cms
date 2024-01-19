@@ -41,7 +41,7 @@ export default () => {
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_NAME)}`,
                 },
-                action: `${API_URL + API_URL_PREFIX}/backend/system/resource`,
+                action: `${API_URL_PREFIX}/backend/system/resource`,
               }}
               imgCropProps={{
                 shape: 'round',

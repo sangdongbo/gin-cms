@@ -26,12 +26,22 @@ export default [
         name: 'staff',
         component: './Settings/Staff',
       },
+      {
+        path: '/settings/permissions',
+        name: 'permissions',
+        component: './Settings/Permissions',
+      },
     ],
   },
   {
     path: '/tenant',
     name: 'tenant',
     component: './Tenant',
+  },
+  {
+    path: '/tools',
+    name: 'tools',
+    component: './Tools',
   },
   {
     path: '/',
