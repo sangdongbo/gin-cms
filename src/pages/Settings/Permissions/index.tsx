@@ -1,10 +1,9 @@
-import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Popconfirm, message } from 'antd';
+import { message } from 'antd';
 import { useRef } from 'react';
 import ModalForm from './components/ModalForm';
-import { addRule, getRule, queryRule, removeRule, updateRule } from './service';
+import { addRule, queryRule } from './service';
 
 export default () => {
   const actionRef = useRef<ActionType>();
@@ -38,39 +37,39 @@ export default () => {
       hideInSearch: true,
       width: 120,
     },
-    {
-      width: 60,
-      title: '操作',
-      valueType: 'option',
-      key: 'option',
-      render: (text, record, _, action) => [
-        <ModalForm
-          title="编辑"
-          onFinish={async (values: any) => {
-            await updateRule(record.id, values);
-            message.success('更新成功');
-            actionRef?.current?.reload();
-            return true;
-          }}
-          request={() => getRule(record.id)}
-          key="edit"
-        >
-          <a>编辑</a>
-        </ModalForm>,
-        <Popconfirm
-          key="delete"
-          title="删除数据"
-          description="您确定要删除这行数据吗?"
-          onConfirm={async () => {
-            await removeRule(record.id);
-            message.success('删除成功');
-            actionRef?.current?.reload();
-          }}
-        >
-          <a style={{ color: 'red' }}>删除</a>
-        </Popconfirm>,
-      ],
-    },
+    // {
+    //   width: 60,
+    //   title: '操作',
+    //   valueType: 'option',
+    //   key: 'option',
+    //   render: (text, record, _, action) => [
+    //     <ModalForm
+    //       title="编辑"
+    //       onFinish={async (values: any) => {
+    //         await updateRule(record.id, values);
+    //         message.success('更新成功');
+    //         actionRef?.current?.reload();
+    //         return true;
+    //       }}
+    //       request={() => getRule(record.id)}
+    //       key="edit"
+    //     >
+    //       <a>编辑</a>
+    //     </ModalForm>,
+    //     <Popconfirm
+    //       key="delete"
+    //       title="删除数据"
+    //       description="您确定要删除这行数据吗?"
+    //       onConfirm={async () => {
+    //         await removeRule(record.id);
+    //         message.success('删除成功');
+    //         actionRef?.current?.reload();
+    //       }}
+    //     >
+    //       <a style={{ color: 'red' }}>删除</a>
+    //     </Popconfirm>,
+    //   ],
+    // },
   ];
 
   return (
@@ -101,9 +100,9 @@ export default () => {
             }}
             key="create"
           >
-            <Button key="button" icon={<PlusOutlined />} type="primary">
+            {/* <Button key="button" icon={<PlusOutlined />} type="primary">
               新建
-            </Button>
+            </Button> */}
           </ModalForm>,
         ]}
       />

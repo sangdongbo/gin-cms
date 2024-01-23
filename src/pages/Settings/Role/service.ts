@@ -1,18 +1,18 @@
 import { request } from '@umijs/max';
 
-const url: string = API_URL + API_URL_PREFIX + '/auth/permission';
+const url: string = API_URL + API_URL_PREFIX + '/auth/role';
 
 export async function queryRule(params?: any) {
-  return request(`${url}`, {
+  return request(`${url}?include=permissions`, {
     method: 'GET',
     params,
   });
 }
 
-export async function updateRule(id: number, options?: any) {
-  return request(`${url}/${id}`, {
+export async function updateRule(params?: any) {
+  return request(`${url}/${params?.id}`, {
     method: 'PUT',
-    data: options || {},
+    data: params || {},
   });
 }
 
@@ -31,10 +31,4 @@ export async function removeRule(id: number) {
 
 export async function getRule(id: number) {
   return request(`${url}/${id}`);
-}
-
-export async function selectPermissionRule(params?: any) {
-  return request(`${url}/select`, {
-    params,
-  });
 }

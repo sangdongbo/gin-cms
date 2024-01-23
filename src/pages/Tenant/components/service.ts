@@ -1,9 +1,7 @@
 import { request } from '@umijs/max';
 
-const url: string = API_URL + API_URL_PREFIX + '/backend/demo/category';
-
-export async function queryTree(params = {}) {
-  return request(url, {
+export async function queryRoles(params = {}) {
+  return request(API_URL + API_URL_PREFIX + '/auth/role/select', {
     params,
   });
 }

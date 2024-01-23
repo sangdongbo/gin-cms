@@ -1,13 +1,19 @@
 import { ExportOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, message } from 'antd';
+import { Button, Tag, message } from 'antd';
 import { useRef } from 'react';
 import ModalForm from './components/ModalForm';
 import { addRule, getRule, queryRule, updateRule } from './service';
 
 export default () => {
   const actionRef = useRef<ActionType>();
+
+  const typeEnum = {
+    1: { text: '现有权限', color: 'green' },
+    2: { text: '定制权限', color: 'blue' },
+    3: { text: '测试账号', color: 'orange' },
+  };
 
   const columns: ProColumns[] = [
     {
@@ -24,6 +30,19 @@ export default () => {
       ellipsis: true,
       width: 100,
     },
+    {
+      title: '项目类型',
+      dataIndex: 'type',
+      key: 'filter[type]',
+      valueType: 'select',
+      valueEnum: typeEnum,
+      width: 60,
+      render: (_, record) => {
+        const { text, color } = typeEnum?.[record.type] || {};
+        return <Tag color={color}>{text}</Tag>;
+      },
+    },
+
     {
       title: '手机号',
       dataIndex: ['user', 'phone'],
@@ -53,6 +72,13 @@ export default () => {
       hideInTable: true,
     },
     {
+      title: '账号到期时间',
+      dataIndex: 'end_time',
+      valueType: 'date',
+      hideInSearch: true,
+      width: 120,
+    },
+    {
       width: 60,
       title: '操作',
       valueType: 'option',
@@ -61,12 +87,18 @@ export default () => {
         <ModalForm
           title="编辑"
           onFinish={async (values: any) => {
+            console.log(values);
             await updateRule(record.id, values);
             message.success('更新成功');
             actionRef?.current?.reload();
             return true;
           }}
-          request={() => getRule(record.id)}
+          request={() => {
+            return getRule(record.id).then((res) => {
+              const permissions = res?.permissions.map((item: any) => item.name) || [];
+              return { ...res, permissions: permissions };
+            });
+          }}
           key="edit"
         >
           <a>编辑</a>
