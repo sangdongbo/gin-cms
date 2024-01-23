@@ -72,7 +72,7 @@ export default () => {
       hideInTable: true,
     },
     {
-      title: '账号到期时间',
+      title: '到期时间',
       dataIndex: 'end_time',
       valueType: 'date',
       hideInSearch: true,
