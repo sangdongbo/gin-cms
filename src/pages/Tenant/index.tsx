@@ -31,7 +31,7 @@ export default () => {
       width: 100,
     },
     {
-      title: '项目类型',
+      title: '账号类别',
       dataIndex: 'type',
       key: 'filter[type]',
       valueType: 'select',
