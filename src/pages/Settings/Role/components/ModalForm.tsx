@@ -14,7 +14,7 @@ export default (props: any) => {
       omitNil={false}
       {...props}
     >
-      <ProFormText name="name" label="角色名称123123" rules={[{ required: true }]} />
+      <ProFormText name="name" label="角色名称" rules={[{ required: true }]} />
       <ProFormCheckbox.Group
         name="permissions"
         layout="vertical"
