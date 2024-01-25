@@ -1,7 +1,7 @@
 import { ExportOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Tag, message } from 'antd';
+import { Badge, Button, Tag, message } from 'antd';
 import { useRef } from 'react';
 import ModalForm from './components/ModalForm';
 import { addRule, getRule, queryRule, updateRule } from './service';
@@ -76,7 +76,29 @@ export default () => {
       dataIndex: 'end_time',
       valueType: 'date',
       hideInSearch: true,
-      width: 120,
+      width: 80,
+    },
+    {
+      title: '状态',
+      width: 60,
+      key: 'filter[status]',
+      valueType: 'select',
+      valueEnum: {
+        1: '开启',
+        0: '关闭',
+      },
+      render: (dom: any, record: any) => {
+        const badgeValue: any = record?.status
+          ? {
+              status: 'success',
+              text: '开启',
+            }
+          : {
+              status: 'error',
+              text: '关闭',
+            };
+        return <Badge {...badgeValue} />;
+      },
     },
     {
       width: 60,
