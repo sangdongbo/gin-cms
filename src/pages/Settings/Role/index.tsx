@@ -118,7 +118,7 @@ export default () => {
             }
             setUpdateModalVisible(state);
           }}
-          width={300}
+          width={500}
           title="修改角色"
         ></ModalForm>
       ) : null}

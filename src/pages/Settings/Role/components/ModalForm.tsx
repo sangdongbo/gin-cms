@@ -1,8 +1,9 @@
-import { ModalForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
-import { selectPermissionRule } from '../../Permissions/service';
+import { ModalForm, ProForm, ProFormText } from '@ant-design/pro-components';
+import { useForm } from 'antd/es/form/Form';
+import Permission from './Permission';
 
 export default (props: any) => {
-  const currentYear = new Date().getFullYear();
+  const [form] = useForm();
 
   return (
     <ModalForm
@@ -15,12 +16,14 @@ export default (props: any) => {
       {...props}
     >
       <ProFormText name="name" label="角色名称" rules={[{ required: true }]} />
-      <ProFormCheckbox.Group
-        name="permissions"
-        layout="vertical"
-        label="选择权限"
-        request={selectPermissionRule}
-      />
+      <ProForm.Item label="选择权限" name="permissions" rules={[{ required: true }]}>
+        <Permission
+          onChange={(value: any) => {
+            form.setFieldsValue({ permissions: value });
+          }}
+          defaultCheckedKeys={props?.initialValues?.permissions}
+        />
+      </ProForm.Item>
     </ModalForm>
   );
 };
