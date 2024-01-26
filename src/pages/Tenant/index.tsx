@@ -4,7 +4,7 @@ import { ProTable } from '@ant-design/pro-components';
 import { Badge, Button, Tag, message } from 'antd';
 import { useRef } from 'react';
 import ModalForm from './components/ModalForm';
-import { addRule, getRule, queryRule, updateRule } from './service';
+import { addRule, queryRule, updateRule } from './service';
 
 export default () => {
   const actionRef = useRef<ActionType>();
@@ -115,12 +115,7 @@ export default () => {
             actionRef?.current?.reload();
             return true;
           }}
-          request={() => {
-            return getRule(record.id).then((res) => {
-              const permissions = res?.permissions.map((item: any) => item.name) || [];
-              return { ...res, permissions: permissions };
-            });
-          }}
+          recordId={record?.id}
           key="edit"
         >
           <a>编辑</a>

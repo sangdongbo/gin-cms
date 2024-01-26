@@ -1,7 +1,7 @@
-import { selectPermissionRule } from '@/pages/Settings/Permissions/service';
+import Permission from '@/pages/Settings/Role/components/Permission';
 import {
   ModalForm,
-  ProFormCheckbox,
+  ProForm,
   ProFormDateTimePicker,
   ProFormDependency,
   ProFormRadio,
@@ -9,10 +9,16 @@ import {
   ProFormSwitch,
   ProFormText,
 } from '@ant-design/pro-components';
+import { useForm } from 'antd/es/form/Form';
+import { useState } from 'react';
+import { getRule } from '../service';
 import { queryRoles } from './service';
 
 export default (props: any) => {
   const currentYear = new Date().getFullYear();
+  const [form] = useForm();
+
+  const [initPermissions, setInitPermissions] = useState<any>([]);
 
   const typeRadio = [
     {
@@ -34,6 +40,13 @@ export default (props: any) => {
       trigger={props?.children}
       modalProps={{
         destroyOnClose: true,
+      }}
+      request={() => {
+        return getRule(props?.recordId).then((res) => {
+          const permissions = res?.permissions.map((item: any) => item.name) || [];
+          setInitPermissions(permissions);
+          return { ...res, permissions: permissions };
+        });
       }}
       omitNil={false}
       {...props}
@@ -62,24 +75,33 @@ export default (props: any) => {
           }
           if (type === 2) {
             return (
-              <ProFormCheckbox.Group
-                name="permissions"
-                layout="vertical"
-                label="选择权限"
-                rules={[{ required: true }]}
-                request={selectPermissionRule}
-              />
+              // <ProFormCheckbox.Group
+              //   name="permissions"
+              //   layout="vertical"
+              //   label="选择权限"
+              //   rules={[{ required: true }]}
+              //   request={selectPermissionRule}
+              // />
+              <ProForm.Item label="选择定制权限" name="permissions" rules={[{ required: true }]}>
+                <Permission
+                  onChange={(value: any) => {
+                    form.setFieldsValue({ permissions: value });
+                  }}
+                  defaultCheckedKeys={initPermissions}
+                />
+              </ProForm.Item>
             );
           }
           if (type === 3) {
             return (
-              <ProFormCheckbox.Group
-                name="permissions"
-                layout="vertical"
-                label="选择权限"
-                rules={[{ required: true }]}
-                request={selectPermissionRule}
-              />
+              <ProForm.Item label="选择测试权限" name="permissions" rules={[{ required: true }]}>
+                <Permission
+                  onChange={(value: any) => {
+                    form.setFieldsValue({ permissions: value });
+                  }}
+                  defaultCheckedKeys={initPermissions}
+                />
+              </ProForm.Item>
             );
           }
         }}
