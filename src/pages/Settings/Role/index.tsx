@@ -13,7 +13,7 @@ export default () => {
 
   const columns: ProColumns[] = [
     {
-      title: '角色名称',
+      title: '账号类别',
       dataIndex: 'name',
       key: 'filter[name]',
       ellipsis: true,

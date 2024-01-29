@@ -55,7 +55,7 @@ export default {
   'menu.settings.account.basic': '账户设置',
   'menu.settings.account.security': '安全设置',
   'menu.settings.staff': '权限管理',
-  'menu.settings.role': '角色列表',
+  'menu.settings.role': '账号类别',
   'menu.settings.permissions': '权限列表',
   'menu.tools': 'AI工具记录',
   'menu.settings.staff.role': '部门设置',

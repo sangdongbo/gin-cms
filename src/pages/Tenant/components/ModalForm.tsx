@@ -42,11 +42,15 @@ export default (props: any) => {
         destroyOnClose: true,
       }}
       request={() => {
-        return getRule(props?.recordId).then((res) => {
-          const permissions = res?.permissions.map((item: any) => item.name) || [];
-          setInitPermissions(permissions);
-          return { ...res, permissions: permissions };
-        });
+        if (props?.recordId) {
+          return getRule(props?.recordId).then((res) => {
+            const permissions = res?.permissions.map((item: any) => item.name) || [];
+            setInitPermissions(permissions);
+            return { ...res, permissions: permissions };
+          });
+        } else {
+          return {};
+        }
       }}
       omitNil={false}
       {...props}
@@ -60,14 +64,14 @@ export default (props: any) => {
       />
       <ProFormText name="phone" label="手机号" />
       <ProFormText name="email" label="邮箱" />
-      <ProFormRadio.Group name="type" label="选择账号类别" options={typeRadio} />
+      <ProFormRadio.Group name="type" label="账号权限" options={typeRadio} />
       <ProFormDependency name={['type']}>
         {({ type }) => {
           if (type === 1) {
             return (
               <ProFormSelect
                 name="role_id"
-                label="选择角色"
+                label="选择账号类别"
                 request={queryRoles}
                 rules={[{ required: true }]}
               />

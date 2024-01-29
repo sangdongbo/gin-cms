@@ -91,7 +91,7 @@ export default () => {
         }}
         toolBarRender={() => [
           <ModalForm
-            title="新建租户"
+            title="新建权限"
             onFinish={async (values: any) => {
               await addRule(values);
               message.success('提交成功');

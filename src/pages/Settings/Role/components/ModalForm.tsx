@@ -15,7 +15,7 @@ export default (props: any) => {
       omitNil={false}
       {...props}
     >
-      <ProFormText name="name" label="角色名称" rules={[{ required: true }]} />
+      <ProFormText name="name" label="账号类别" rules={[{ required: true }]} />
       <ProForm.Item label="选择权限" name="permissions" rules={[{ required: true }]}>
         <Permission
           onChange={(value: any) => {

@@ -31,11 +31,11 @@ export default [
         name: 'role',
         component: './Settings/Role',
       },
-      {
-        path: '/settings/permissions',
-        name: 'permissions',
-        component: './Settings/Permissions',
-      },
+      // {
+      //   path: '/settings/permissions',
+      //   name: 'permissions',
+      //   component: './Settings/Permissions',
+      // },
     ],
   },
   {
