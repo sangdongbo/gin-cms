@@ -1,10 +1,10 @@
 import { ExportOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Tag, message } from 'antd';
+import { Badge, Button, Tag, message } from 'antd';
 import { useRef } from 'react';
 import ModalForm from './components/ModalForm';
-import { addRule, getRule, queryRule, updateRule } from './service';
+import { addRule, queryRule, updateRule } from './service';
 
 export default () => {
   const actionRef = useRef<ActionType>();
@@ -31,7 +31,7 @@ export default () => {
       width: 100,
     },
     {
-      title: '项目类型',
+      title: '账号类别',
       dataIndex: 'type',
       key: 'filter[type]',
       valueType: 'select',
@@ -72,11 +72,33 @@ export default () => {
       hideInTable: true,
     },
     {
-      title: '账号到期时间',
+      title: '到期时间',
       dataIndex: 'end_time',
       valueType: 'date',
       hideInSearch: true,
-      width: 120,
+      width: 80,
+    },
+    {
+      title: '状态',
+      width: 60,
+      key: 'filter[status]',
+      valueType: 'select',
+      valueEnum: {
+        1: '开启',
+        0: '关闭',
+      },
+      render: (dom: any, record: any) => {
+        const badgeValue: any = record?.status
+          ? {
+              status: 'success',
+              text: '开启',
+            }
+          : {
+              status: 'error',
+              text: '关闭',
+            };
+        return <Badge {...badgeValue} />;
+      },
     },
     {
       width: 60,
@@ -93,12 +115,7 @@ export default () => {
             actionRef?.current?.reload();
             return true;
           }}
-          request={() => {
-            return getRule(record.id).then((res) => {
-              const permissions = res?.permissions.map((item: any) => item.name) || [];
-              return { ...res, permissions: permissions };
-            });
-          }}
+          recordId={record?.id}
           key="edit"
         >
           <a>编辑</a>

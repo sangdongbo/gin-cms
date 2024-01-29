@@ -4,11 +4,14 @@ import { Button } from 'antd';
 import moment from 'moment';
 import { stringify } from 'qs';
 import { useRef, useState } from 'react';
+import ModalForm from './components/ModalForm';
 import { queryRule } from './service';
 
 export default () => {
   const actionRef = useRef<ActionType>();
   const [loading, setLoading] = useState(false);
+  const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+  const [row, setRow] = useState<any>();
 
   const columns: ProColumns[] = [
     {
@@ -26,6 +29,12 @@ export default () => {
       width: 120,
     },
     {
+      title: '答案',
+      dataIndex: 'source',
+      hideInSearch: true,
+      width: 60,
+    },
+    {
       title: '创建时间',
       dataIndex: 'created_at',
       valueType: 'dateTime',
@@ -38,6 +47,22 @@ export default () => {
       key: 'filter[created_at]',
       valueType: 'dateTimeRange',
       hideInTable: true,
+    },
+    {
+      width: 30,
+      title: '操作',
+      valueType: 'option',
+      key: 'option',
+      render: (text, record, _, action) => [
+        <a
+          onClick={() => {
+            setUpdateModalVisible(true);
+            setRow(record);
+          }}
+        >
+          详情
+        </a>,
+      ],
     },
   ];
 
@@ -88,6 +113,25 @@ export default () => {
         }}
         toolBarRender={() => []}
       />
+      {row ? (
+        <ModalForm
+          initialValues={{
+            message: row.message,
+            result: row.result,
+            source: row.source,
+          }}
+          id={row.id}
+          open={updateModalVisible}
+          onOpenChange={(state: any) => {
+            if (!state) {
+              setRow(undefined);
+            }
+            setUpdateModalVisible(state);
+          }}
+          width={500}
+          title="查看详情"
+        ></ModalForm>
+      ) : null}
     </>
   );
 };
