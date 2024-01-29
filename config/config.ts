@@ -141,6 +141,6 @@ export default defineConfig({
     API_URL: 'https://api.lookstar.com.cn',
   },
 
-  base: '/central-admin/',
-  publicPath: '/central-admin/',
+  base: '/central/',
+  publicPath: '/central/',
 });
