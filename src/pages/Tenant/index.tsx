@@ -8,7 +8,6 @@ import { addRule, queryRule, updateRule } from './service';
 
 export default () => {
   const actionRef = useRef<ActionType>();
-
   const typeEnum = {
     1: { text: '现有权限', color: 'green' },
     2: { text: '定制权限', color: 'blue' },
