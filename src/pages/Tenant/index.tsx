@@ -151,6 +151,7 @@ export default () => {
         request={queryRule}
         pagination={{
           pageSize: 10,
+          showSizeChanger: false,
         }}
         toolBarRender={() => [
           <ModalForm
