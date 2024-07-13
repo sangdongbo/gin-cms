@@ -87,6 +87,7 @@ const Login: React.FC = () => {
       setType(values.type);
       if (values.type === 'account') {
         values.password = crypto.aes_encrypt(values?.password);
+        //values.password = values?.password;
       } else if (values.type === 'mobile') {
         values.phone = crypto.aes_encrypt(values?.phone);
       } else if (values.type === 'mail') {
@@ -94,8 +95,8 @@ const Login: React.FC = () => {
       }
 
       const result = await login({ ...values });
-      if (result?.access_token) {
-        localStorage.setItem(ACCESS_TOKEN_NAME, result.access_token);
+      if (result?.data?.access_token) {
+        localStorage.setItem(ACCESS_TOKEN_NAME, result?.data?.access_token);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功z！',
@@ -142,14 +143,14 @@ const Login: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={
-            <img
-              alt="logo"
-              style={{ width: 80, marginLeft: -25 }}
-              src="https://lookstar-landing.oss-cn-beijing.aliyuncs.com/uploads/tenant/landing/202202/rc-upload-1645671085202-2.png"
-            />
-          }
-          title="观星总后台"
+          // logo={
+          //   <img
+          //     alt="logo"
+          //     style={{ width: 80, marginLeft: -25 }}
+          //     src="https://lookstar-landing.oss-cn-beijing.aliyuncs.com/uploads/tenant/landing/202202/rc-upload-1645671085202-2.png"
+          //   />
+          // }
+          title="后台"
           subTitle=""
           onFinish={async (values) => {
             values.type = type;
@@ -189,7 +190,7 @@ const Login: React.FC = () => {
           {type === 'account' && (
             <>
               <ProFormText
-                name="username"
+                name="nickname"
                 fieldProps={{
                   size: 'large',
                   prefix: <UserOutlined />,

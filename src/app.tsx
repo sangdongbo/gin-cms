@@ -1,14 +1,13 @@
 import Footer from '@/components/Footer';
+import NoPermission from '@/pages/403';
+import { SettingOutlined } from '@ant-design/icons';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
+import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import React from 'react';
-import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
-import NoPermission from '@/pages/403';
 
 const loginPath = '/user/login';
 
@@ -24,7 +23,7 @@ export async function getInitialState(): Promise<{
   const fetchUserInfo = async () => {
     try {
       const msg = await queryCurrentUser();
-      return msg;
+      return msg?.data;
     } catch (error) {
       history.push(loginPath);
     }
@@ -54,7 +53,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       src: initialState?.currentUser?.avatar,
       title: <AvatarName />,
       render: (_, avatarChildren) => {
-        return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
+        return (
+          <>
+            <span onClick={() => history.push('/settings/account')}>
+              <SettingOutlined style={{ fontSize: 20 }} />
+            </span>
+            <AvatarDropdown menu={true}>{avatarChildren}</AvatarDropdown>
+          </>
+        );
       },
     },
     waterMarkProps: {

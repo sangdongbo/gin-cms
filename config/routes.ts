@@ -21,21 +21,21 @@ export default [
         name: 'account',
         component: './Settings/Account',
       },
-      // {
-      //   path: '/settings/staff',
-      //   name: 'staff',
-      //   component: './Settings/Staff',
-      // },
+      {
+        path: '/settings/staff',
+        name: 'staff',
+        component: './Settings/Staff',
+      },
       {
         path: '/settings/role',
         name: 'role',
         component: './Settings/Role',
       },
-      // {
-      //   path: '/settings/permissions',
-      //   name: 'permissions',
-      //   component: './Settings/Permissions',
-      // },
+      {
+        path: '/settings/permissions',
+        name: 'permissions',
+        component: './Settings/Permissions',
+      },
     ],
   },
   {

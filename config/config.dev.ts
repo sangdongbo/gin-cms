@@ -7,7 +7,7 @@ export default defineConfig({
   publicPath: '/central/',
   define: {
     ...define,
-    API_URL_PREFIX: '/central',
-    API_URL: 'https://beta-api.lookstar.com.cn',
+    API_URL_PREFIX: '',
+    API_URL: 'http://localhost:8888',
   },
 });

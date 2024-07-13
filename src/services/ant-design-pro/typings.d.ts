@@ -15,6 +15,7 @@ declare namespace API {
 
   type LoginResult = {
     access_token?: string;
+    data?: Array;
     errcode?: number;
     errmsg?: string;
   };
