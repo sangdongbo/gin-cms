@@ -1,6 +1,6 @@
 import { request } from 'umi';
 
-const url = API_URL + API_URL_PREFIX + '/backend/auth';
+const url = API_URL + API_URL_PREFIX + '/admin/auth';
 
 export async function bindMailRule(params: any) {
   return request(`${url}/bind-mail`, {

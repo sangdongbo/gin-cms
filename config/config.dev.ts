@@ -7,7 +7,7 @@ export default defineConfig({
   publicPath: '/central/',
   define: {
     ...define,
-    API_URL_PREFIX: '',
-    API_URL: 'http://localhost:8888',
+    API_URL_PREFIX: '/api',
+    API_URL: 'http://localhost:8000',
   },
 });
